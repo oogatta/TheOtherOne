@@ -5,17 +5,8 @@ use warnings;
 
 use feature ':5.14';
 
-use Module::Load;
+our $VERSION = '0.1.0';
 
-use constant SOCKET => 'Socket';
-use constant SIGNAL => 'Signal';
-
-sub server {
-    my ($class, $type) = @_;
-
-    my $module = "TheOtherOne::Server::$type";
-    load $module;
-    $module->new;
-}
+use App::Cmd::Setup -app;
 
 1;

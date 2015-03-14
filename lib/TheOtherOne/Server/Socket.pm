@@ -3,14 +3,13 @@ package TheOtherOne::Server::Socket;
 use strict;
 use warnings;
 
+use feature ':5.14';
+
 use IO::Socket::INET;
 
 $| = 1;
 
 use TheOtherOne::Runner;
-
-use feature ':5.14';
-
 
 sub new { bless {}; }
 

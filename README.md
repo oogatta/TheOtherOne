@@ -1,6 +1,6 @@
 # TheOtherOne
 
-A spring like prove server for unit test paranoids like me.
+A spring-like prove server for unit test paranoids like me.
 
 ## Some Setup
 
@@ -13,22 +13,22 @@ $ cpanm --installdeps .
 ## Server
 
 ```bash
-$ cd /any/perl/project/
-$ too-server
+$ cd test-samble
+$ too server
 server started on port 7777.
 ```
 
 ## Client 
 
 ```bash
-$ cd /any/perl/project/
-$ too-client someof/your/cute/unit.t
+$ cd test-sample
+$ too client t/lib/Oogatta.t
 ```
 
 Currently test outputs get printed out to the server's STDOUT.
 
 ```bash
-$ too-server
+$ too server
 server started on port 7777.
 received data: t/lib/Oogatta.t
 ok, starting tests.
