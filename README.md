@@ -1,6 +1,14 @@
 # TheOtherOne
 
-A prove server for unit test paranoids like me.
+A spring like prove server for unit test paranoids like me.
+
+## Some Setup
+
+```bash
+$ git clone https://github.com/oogatta/TheOtherOne.git
+$ cd TheOtherOne
+$ cpanm --installdeps . 
+```
 
 ## Server
 
