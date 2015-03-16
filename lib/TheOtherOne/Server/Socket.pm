@@ -14,13 +14,13 @@ use TheOtherOne::Runner;
 sub new { bless {}; }
 
 sub start {
-  my ($self, $port) = @_;
+  my ($self, $host, $port) = @_;
 
   my $socket = new IO::Socket::INET (
-    LocalHost => '0.0.0.0',
+    LocalHost => $host // '0.0.0.0',
     LocalPort => $port // '7777',
     Proto     => 'tcp',
-    Listen    => 1,
+    Listen    => 5,
     Reuse     => 1
   );
   die "cannot create socket $!\n" unless $socket;
@@ -30,11 +30,14 @@ sub start {
   while ( 1 ) {
     my $client_socket = $socket->accept();
 
-    my $data = '';
-    $client_socket->recv($data, 1024);
-    say "received data: $data";
+    my $target;
+    $client_socket->recv($target, 1024);
 
-    TheOtherOne::Runner->run($data);
+    if ( $target ) {
+      say "received data: $target";
+  
+      TheOtherOne::Runner->run($target);
+    }
 
     shutdown $client_socket, 1;
   }
