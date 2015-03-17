@@ -1,0 +1,11 @@
+package TheOtherOne::Plugin::Server::Hoge {
+  use constant HOGE => 1;
+  
+  1;
+};
+
+package TheOtherOne::Plugin::Server::Fuga {
+  use constant FUGA => 1;
+  
+  1;
+};

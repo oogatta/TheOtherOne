@@ -25,6 +25,7 @@ sub opt_spec {
     [ "$http_key|h",   'use http' ],
     [ 'host|t=s',      'socket|http host (default: 0.0.0.0', { default => '0.0.0.0' } ],
     [ 'port|p=s',      'socket|http port (default: 7777)', { default => '7777' } ],
+    [ 'rc=s',          'too configuration file path' ],
   );
 }
 
@@ -40,10 +41,10 @@ sub execute {
   my ($self, $opt, $args) = @_;
   
   if ( $opt->{$socket_key} ) {
-    TheOtherOne::Server->get($socket_key)->start($opt->{host}, $opt->{port});
+    TheOtherOne::Server->get($socket_key, $opt->{rc})->start($opt->{host}, $opt->{port});
   }
   elsif ( $opt->{$signal_key} ) {
-    TheOtherOne::Server->get($signal_key)->start($args->[0]);
+    TheOtherOne::Server->get($signal_key, $opt->{rc})->start($args->[0]);
   }
   elsif ( $opt->{$http_key} ) {
   }

@@ -12,11 +12,11 @@ use constant SIGNAL => 'signal';
 use constant HTTP   => 'HTTP';
 
 sub get {
-  my ($class, $type) = @_;
+  my ($class, $type, $rc) = @_;
 
   my $module = "TheOtherOne::Server::${\ucfirst($type)}";
   load $module;
-  $module->new;
+  $module->new($rc);
 }
 
 1;

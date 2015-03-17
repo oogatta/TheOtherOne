@@ -5,13 +5,31 @@ use warnings;
 
 use feature ':5.14';
 
+use File::Slurp;
+
 use IO::Socket::INET;
+
+use Module::Load;
 
 $| = 1;
 
 use TheOtherOne::Runner;
 
-sub new { bless {}; }
+sub new {
+  my ($class, $rc) = @_;
+  
+  load $rc;
+  
+  my $rc_data = read_file($rc);
+  say $rc_data;
+  if ( $rc_data ) {
+    while ( $rc_data =~ /^package\s+([a-zA-Z:]+)\s+[{\$]/mg ) {
+      say $1;
+    }
+  }
+  
+  bless { rc => $rc };
+}
 
 sub start {
   my ($self, $host, $port) = @_;
@@ -36,7 +54,7 @@ sub start {
     if ( $target ) {
       say "received data: $target";
   
-      TheOtherOne::Runner->run($target);
+      #TheOtherOne::Runner->run($target);
     }
 
     shutdown $client_socket, 1;

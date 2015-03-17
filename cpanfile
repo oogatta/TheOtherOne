@@ -4,3 +4,4 @@ requires 'Test::Pretty', '0.30';
 requires 'App::Cmd', '0.327';
 requires 'List::Util', '1.41';
 requires 'Term::ANSIColor', '4.03';
+requires 'File::Slurp', '9999.19';
